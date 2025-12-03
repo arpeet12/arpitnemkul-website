@@ -13,6 +13,39 @@ body {
     overflow: hidden;
     background: #000;
 }
+#musicWidget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    margin: 20px auto;       /* centers in #mainContent */
+    width: fit-content;
+    z-index: 10;             /* lower than appContainer/modal */
+}
+
+.musicBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.musicBtn svg {
+    display: block;
+}
+
+.musicTitle {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
 
 /* Lock Screen */
 #lockScreen {
@@ -108,7 +141,23 @@ body {
             <span style="color:white;font-size:14px;">Small Gift</span>
         </div>
     </div>
+    <!-- Music Widget -->
+<div id="musicWidget">
+    <audio id="bgMusic" src="/Happy Birthday (Piano Version).mp3" loop></audio>
+    <button id="playBtn" class="musicBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
+    </button>
+    <button id="pauseBtn" class="musicBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M6 2h4v20h-4v-20zm8 0h4v20h-4v-20z"/></svg>
+    </button>
+    <span class="musicTitle"> Music 4u</span>
 </div>
+
+</div>
+
+
+
+
 
 <!-- Bottom Dock -->
 <div id="appDock">
@@ -129,6 +178,9 @@ body {
         <span style="color:white;font-size:14px;">Facebook</span>
     </div>
 </div>
+
+
+
 
 <!-- App Container -->
 <div id="appContainer">
@@ -347,6 +399,14 @@ function openApp(app){
 function closeApp(){
     document.getElementById('appContainer').style.display='none';
 }
+
+const music = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+
+playBtn.onclick = () => music.play();
+pauseBtn.onclick = () => music.pause();
+
 </script>
 </body>
 </html>
