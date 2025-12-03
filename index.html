@@ -103,10 +103,15 @@ body {
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IMessage_logo.svg/1200px-IMessage_logo.svg.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
             <span style="color:white;font-size:14px;">Messages</span>
         </div>
-        <div class="appIcon" onclick="openApp('game')">
-            <img src="https://e7.pngegg.com/pngimages/431/758/png-clipart-game-center-iphone-video-game-computer-icons-games-game-electronics.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
-            <span style="color:white;font-size:14px;">Game</span>
+        <div class="appIcon" onclick="openApp('link')">
+            <img src="https://em-content.zobj.net/source/apple/271/wrapped-gift_1f381.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+            <span style="color:white;font-size:14px;">Small Gift</span>
+
+      
+
         </div>
+   
+
     </div>
 </div>
 
@@ -333,7 +338,7 @@ function openApp(app){
             <strong style="color:white;">Beaufiful girl in the world</strong>
         </div>
         <div>
-            <img src="photo1 (24).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
+            <img src="/photo1 (24).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
         </div>
 
           <div>
@@ -399,6 +404,34 @@ function closeApp(){
     if(iframe){ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music){ music.pause(); music.currentTime=0; } }
     container.style.display='none';
 }
+function openApp(appName) {
+    if (appName === 'link') {
+        window.location.href = "https://www.canva.com/design/DAG6eInDEBM/fwws1axd3v_XoM99jJ5cmg/watch?utm_content=DAG6eInDEBM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7194e40100"; 
+        return;
+    }
+
+    // Your existing apps + modal code stays unchanged below
+    const modal = document.getElementById('appModal');
+    const modalContent = document.getElementById('modalContent');
+
+    const apps = {
+        camera: { title: '📷 Camera', description: 'Take and manage your photos' },
+        photos: { title: '🖼️ Photos', description: 'Browse your photo gallery' },
+        messages: { title: '💬 Messages', description: 'Chat with your loved ones' },
+        game: { title: '🎮 Game', description: 'Play fun birthday games' },
+        facebook: { title: '📘 Facebook', description: 'Your custom FB page' }
+    };
+
+    const app = apps[appName];
+    modalContent.innerHTML = `
+        <h2>${app.title}</h2>
+        <p>${app.description}</p>
+    `;
+    modal.classList.add('active');
+}
+
+
+
 </script>
 </body>
 </html>
