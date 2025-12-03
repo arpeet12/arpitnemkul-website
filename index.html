@@ -1,157 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Baka!</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #ffafbd, #ffc3a0);
-            text-align: center;
-            color: #fff;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
 
-        h1 {
-            font-size: 3rem;
-            margin-top: 50px;
-            animation: fadeIn 2s ease-in-out;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: sans-serif;
+        background: #111;
+        color: white;
+        height: 100vh;
+        overflow: hidden;
+    }
 
-        h2 {
-            font-size: 2rem;
-            margin: 20px 0;
-        }
+    /* Lock Screen */
+    #lockScreen {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: url('https://i.imgur.com/QqQvF7o.jpeg') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
 
-        p {
-            font-size: 1.2rem;
-            margin: 20px auto;
-            max-width: 600px;
-            line-height: 1.6;
-            animation: fadeIn 4s ease-in-out;
-        }
+    #slideWrapper {
+        width: 80%;
+        height: 60px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 40px;
+        backdrop-filter: blur(6px);
+        position: relative;
+        overflow: hidden;
+        margin-top: 380px;
+    }
 
-        button {
-            font-size: 1.2rem;
-            padding: 15px 30px;
-            color: #ffafbd;
-            background: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            margin-top: 30px;
-        }
+    #slider {
+        width: 60px;
+        height: 60px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-weight: bold;
+        box-shadow: 0 0 10px white;
+        touch-action: none;
+    }
 
-        button:hover {
-            transform: scale(1.1);
-            background: #ffafbd;
-            color: #fff;
-        }
+    #slideText {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        line-height: 60px;
+        color: rgba(255,255,255,0.8);
+        font-size: 20px;
+        pointer-events: none;
+    }
 
-        #surprise {
-            display: none;
-            margin-top: 30px;
-        }
-
-        img {
-            max-width: 90%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Big Button Styles */
-        .big-button {
-            font-size: 1.5rem;
-            padding: 20px 40px;
-            background-color: #ffafbd;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 15px;
-            width: 250px;
-            transition: all 0.3s ease;
-        }
-
-        .big-button:hover {
-            transform: scale(1.1);
-            background-color: #ffc3a0;
-        }
-
-        /* Gallery Styles */
-        #gallery {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            padding: 30px 10%;
-            margin-top: 40px;
-        }
-
-        #gallery img {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        #gallery img:hover {
-            transform: scale(1.1);
-        }
-    </style>
+    /* Main content hidden initially */
+    #mainContent {
+        display: none;
+        padding: 20px;
+        text-align: center;
+    }
+</style>
 </head>
+
 <body>
-    <h1>🎉 जन्मदिनको शुभकामना मेरो बाका लाई🎉</h1>
-    <h2>Baka bue, Tmi Mero lagi sabai hau ❤️</h2>
-    <p>My dear Baka,फोटो हेर्नका लागि तलको बटनमा थिच्नुहोस्  💕</p>
 
-    <button onclick="revealSurprise()">Click Here for Your Surprise</button>
-
-    <div id="surprise">
-        <h2>🌟 hehe budi budi lai greeting card tyo pani virtually hai ta  🌟</h2>
-        <img src="Grey Black Minimalist Happy Birthday Video Message.png" alt="Special Surprise for Baka">
-        <p>I love you, Baka! jhaile pani baka sangai time spend garna pam baka sangai basna pam dheraii kura haru sangai garnu xa baka ra ma🥰</p>
-
-        <!-- Three Big Buttons for Navigation -->
-        <div>
-            <button class="big-button" onclick="window.location.href='gallery.html'">🎨 Gallery</button>
-            <button class="big-button" onclick="window.location.href='letter.html'">🌟 special letter </button>
-            <button class="big-button" onclick="window.location.href='quiz.html'">🌟 special game </button>
-           
-            <button class="big-button" onclick="window.location.href='message.html'">💌 100 Messages for Baka 💌</button> <!-- New Button for 100 Messages Page -->
-        </div>
+<!-- Lock Screen -->
+<div id="lockScreen">
+    <div id="slideWrapper">
+        <div id="slideText">Slide to Unlock</div>
+        <div id="slider">➤</div>
     </div>
+</div>
 
-    <audio autoplay loop>
-      <source src="Happy Birthday (Piano Version).mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+<!-- Actual Website Content -->
+<div id="mainContent">
+    <h1>🎉 Happy Birthday My Love ❤️</h1>
+    <p>Swipe to unlock worked! Now we continue designing beautiful parts…</p>
+</div>
 
-    <footer style="color: black;">
-        Made with endless love by your [Baka]. Here's to us forever! 💕
-    </footer>
 
-    <script>
-        function revealSurprise() {
-            document.getElementById('surprise').style.display = 'block';
-        }
-    </script>
+<script>
+const slider = document.getElementById("slider");
+const wrapper = document.getElementById("slideWrapper");
+const lockScreen = document.getElementById("lockScreen");
+const mainContent = document.getElementById("mainContent");
+
+let isDown = false;
+let startX;
+let sliderX = 0;
+
+slider.addEventListener("touchstart", startSlide);
+slider.addEventListener("mousedown", startSlide);
+
+function startSlide(e) {
+    isDown = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+}
+
+document.addEventListener("touchmove", slideMove);
+document.addEventListener("mousemove", slideMove);
+
+function slideMove(e) {
+    if (!isDown) return;
+
+    let x = e.touches ? e.touches[0].clientX : e.clientX;
+    let move = x - startX;
+
+    if (move < 0) move = 0;
+    if (move > wrapper.offsetWidth - slider.offsetWidth) {
+        move = wrapper.offsetWidth - slider.offsetWidth;
+    }
+
+    slider.style.left = move + "px";
+    sliderX = move;
+}
+
+document.addEventListener("touchend", endSlide);
+document.addEventListener("mouseup", endSlide);
+
+function endSlide() {
+    isDown = false;
+
+    // If slider reached the end (unlock)
+    if (sliderX >= wrapper.offsetWidth - slider.offsetWidth - 5) {
+        lockScreen.style.opacity = "0";
+        setTimeout(() => {
+            lockScreen.style.display = "none";
+            mainContent.style.display = "block";
+        }, 300);
+    } else {
+        // Reset slider back
+        slider.style.left = "0px";
+    }
+}
+</script>
+
 </body>
 </html>
