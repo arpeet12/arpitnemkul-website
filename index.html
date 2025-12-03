@@ -78,6 +78,25 @@ body {
 .message.sent { background: #0a84ff; color:white; align-self:flex-end; }
 #messageInput { flex:1; padding:10px; border-radius:15px; border:none; outline:none; }
 #sendBtn { margin-left:10px; padding:10px 15px; border:none; border-radius:15px; background:#0a84ff; color:white; cursor:pointer; }
+
+/* Game Styles */
+.game-container { text-align:center; margin-top:20px; }
+#balloons { position: relative; width:100%; height:400px; overflow:hidden; border:2px dashed rgba(255,255,255,0.3); border-radius:12px; background: rgba(0,0,0,0.2); margin:10px 0; }
+.balloon { position:absolute; cursor:pointer; width:50px; height:70px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; animation: float linear infinite; }
+.balloon-shape { width:40px; height:50px; border-radius:50%; background:red; }
+.string { width:2px; height:20px; background:white; margin-top:0px; }
+.pop-effect { position:absolute; font-size:24px; animation: popAnim 0.5s ease forwards; }
+@keyframes popAnim { 0%{opacity:1; transform:scale(1);} 100%{opacity:0; transform:scale(2);} }
+
+.stats { display:flex; justify-content:space-around; margin-bottom:10px; }
+.stat-box { display:flex; flex-direction:column; align-items:center; }
+.stat-label { font-size:14px; }
+.stat-value { font-size:20px; font-weight:bold; }
+
+.controls { display:flex; justify-content:center; gap:10px; margin-top:10px; }
+.controls button { padding:10px 15px; border:none; border-radius:12px; background:#0a84ff; color:white; cursor:pointer; }
+
+#gameOver { display:none; color:white; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -178,149 +197,103 @@ function openApp(app){
     content.innerHTML='';
 
     if(app==='gallery'){
-        content.innerHTML=`<h2>Gallery App</h2><iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;" id="galleryFrame"></iframe>`;
-        const iframe=document.getElementById('galleryFrame');
-        iframe.onload=()=>{ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music) music.play(); };
+        content.innerHTML=`<h2>Gallery App</h2><p>Gallery coming soon!</p>`;
     }
     else if(app==='messages'){
+        content.innerHTML=`<h2>Messages App</h2><p>Messages interface here...</p>`;
+    }
+    else if(app==='game'){ 
+        // Balloon Game
         content.innerHTML=`
-            <h2 style="text-align:center;">Messages</h2>
-            <div id="chatContainer">
-               <div id="chatContainer">
-  <div class="message received">Happy birthday budi 🎂</div>
-  <div class="message sent">i am fine , and how about you ,small digital wish from mero taraf</div>
-  <div class="message received">remembered the day last time i used to wish like this </div>
-  <div class="message sent">mero sweet budi reply ne deu na </div>
-  <div class="message received">i just wanted to say </div>
-  <div class="message sent">mero budi kasto funny caring ani lovelable character xa  😂</div>
-  <div class="message received">I miss you budi lot more </div>
-  <div class="message sent">I literally coded whole creativity to wish you</div>
-  <div class="message received">happy birthday!</div>
-  <div class="message sent">kassamm seeyy mere pyarr ke liye sab khuch❤️</div>
-  <div class="message received">arko juni ma ne khojdai aauxu </div>
-  <div class="message sent">after everything you did for me 😄</div>
-  <div class="message received">you changed me  ❤️</div>
-  <div class="message sent">only malai baba materail banauna matraii baki xa  🥰</div>
-  <div class="message received">Can't wait to see you</div>
-  <div class="message sent">voli bihena buelai vetxu kiss khanxu</div>
-  <div class="message received">your smile is brighter than my future</div>
-  <div class="message sent">ajha birthday ko din malai chocolate kindineeyy tyaaa 😊</div>
-  <div class="message received">tmi katii caring xau </div>
-  <div class="message sent">Always, for you 💙</div>
-  <div class="message received">if you are reading this then it means i sucessfully deployed my code .</div>
-  <div class="message sent">you are my love of my life😘</div>
-  <div class="message received">i love chatting with you 😄</div>
-  <div class="message sent">oohh budi tmro lagi ma 100 message lekhdai xu❤️</div>
-  <div class="message received">hehe k lekham k lekham vayo</div>
-  <div class="message sent">edi moon ramro vako vaye tmi super ramroo 🥰</div>
-  <div class="message received">jhaile ko jastai tmi one year younger hunxau hehe💙</div>
-  <div class="message sent">both same age vayexi hehe kk garne hola 😄</div>
-  <div class="message received">yo year ma budi ra ma kk garnu parxa hai ta😳</div>
-  <div class="message sent">tya aru sanga maskine haina hai ma jelous hunxu 😏</div>
-  <div class="message received">ma ne dheraii possive xu ne 😄</div>
-  <div class="message sent">aba estaii kta choose garyou hai hehe ❤️</div>
-  <div class="message received">malai ta tmi kyaa manparxa bulushh 🥰</div>
-  <div class="message sent">Miss you!</div>
-  <div class="message received">Miss you more 😘</div>
-  <div class="message sent">kaile vetne kaile vetne vako xaina?</div>
-  <div class="message received">yo year eso eso nagarne😄</div>
-  <div class="message sent">ma ta kyaa hai hai control garna sakidna kya ❤️</div>
-  <div class="message received">you are my life jasma sweet guliooo add gareko jasto.</div>
-  <div class="message sent">tmi aayexi mero life change vako ho by the way😄</div>
-  <div class="message received">i always keep thinking no matter how you think about me </div>
-  <div class="message sent">no matter what happens you birthday gif will keep loving everytime 🥰</div>
-  <div class="message received">You’re my sunchine 🌞</div>
-  <div class="message sent">And you’re my rainbow 🌈</div>
-  <div class="message received">Feeling vagyaamaniii to have you.</div>
-  <div class="message sent">I feel so much proud in your success💙</div>
-  <div class="message received">tya malai game khelyo vanera gali nagarne maya garera food laydine</div>
-  <div class="message sent">Thanks for everything you gave me love care gifts etc hehe unlimited puppy ❤️</div>
-  <div class="message received">malai hai tmi kyaaa manparxa kya</div>
-  <div class="message sent">edi earth blast hunxa vanyo vane ma tmi sanga ek din vayene life bitauxu happy happy 😄</div>
-  <div class="message received">lets do everything sangaii</div>
-  <div class="message sent">sangai khane 🥰</div>
-  <div class="message received">sangaii happy hune</div>
-  <div class="message sent">sangaii dhani hune 💙</div>
-  <div class="message received">sasngaii travel garne</div>
-  <div class="message sent">sangaii khushi😄</div>
-  <div class="message received">sangaii dukhii!</div>
-  <div class="message sent">meo bue i love u soooooooooooo much😘</div>
-  <div class="message received">happy birthday budi ❤️</div>
-  <div class="message sent">happy birthday merooo lovely wifeeeyy 🥰</div>
-  <div class="message received">i have each and every memories with you</div>
-  <div class="message sent">padhna jhyou lagyo hola hai😄</div>
-  <div class="message received">you no angryy nahhh.</div>
-  <div class="message sent">i want to tell you secret😄</div>
-  <div class="message received">if you want to be happy with me just smile everytime </div>
-  <div class="message sent">just try even if you dont like  💙</div>
-  <div class="message received">thats a secret.</div>
-  <div class="message sent">birthday gift nai ma ho hai 😄</div>
-  <div class="message received">ki aru chaixa ra ? ❤️</div>
-  <div class="message sent">meo budi love u jii 🥰</div>
-  <div class="message received">nindra lagyo hola aba ta i think</div>
-  <div class="message sent">budi suna na tmi malai kati ko maya garxauuu ? 😘</div>
-  <div class="message received">from meeting first time to meeting everyday </div>
-  <div class="message sent">from to ☀️</div>
-  <div class="message received">evening! ❤️</div>
-  <div class="message sent">i know you are more smart than me!</div>
-  <div class="message received">your insticts is wayy too good🥰</div>
-  <div class="message sent">you know my behaviours very well 💙</div>
-  <div class="message received">even i get surprised of it😄</div>
-  <div class="message sent">You’re so cute 😘</div>
-  <div class="message received">bakayaruuuuu 😳</div>
-  <div class="message sent">Can't wait to see you  😏</div>
-  <div class="message received">birthday ma ta mast mooj garne hola hai hehe sifu putting 😄</div>
-  <div class="message sent">You're my favorite food❤️</div>
-  <div class="message received">mine forever🥰</div>
-  <div class="message sent">forever</div>
-  <div class="message received">ever😘</div>
-  <div class="message sent">ever!</div>
-  <div class="message received">and! 😄</div>
-  <div class="message sent">ever ❤️</div>
-  <div class="message received">Love you budi  🥰</div>
-  <div class="message sent">Always thinking of you 😘</div>
-  <div class="message received">Always thinking of you ❤️</div>
-  <div class="message sent">You make me so happy 😊</div>
-  <div class="message received">You make me happier 🥰</div>
-  <div class="message sent">You’re my sunshine 🌞</div>
-  <div class="message received">And you’re my rainbow 🌈</div>
-  <div class="message sent">Feeling lucky ❤️</div>
-  <div class="message received">mero budi meo matraii aru kasai ko haina hai  😄</div>
-</div>
-
-            </div>
-            <div style="display:flex; margin-top:10px;">
-                <input id="messageInput" type="text" placeholder="iMessage" />
-                <button id="sendBtn">Send</button>
-            </div>
+        <h2>🎈 Balloon Pop Game 🎉</h2>
+        <div class="stats">
+            <div class="stat-box"><span class="stat-label">Score</span><span class="stat-value" id="score">0</span></div>
+            <div class="stat-box"><span class="stat-label">Time</span><span class="stat-value" id="timer">30</span></div>
+            <div class="stat-box"><span class="stat-label">Popped</span><span class="stat-value" id="popped">0</span></div>
+        </div>
+        <div id="balloons"></div>
+        <div id="gameOver">
+            <h2>🎂 Game Over! 🎂</h2>
+            <p>Happy Birthday!</p>
+        </div>
+        <div class="controls">
+            <button id="startBtn">Start Game</button>
+            <button id="resetBtn">Reset</button>
+        </div>
         `;
 
-        const sendBtn=document.getElementById('sendBtn');
-        const messageInput=document.getElementById('messageInput');
-        const chatContainer=document.getElementById('chatContainer');
+        const balloonsContainer=document.getElementById('balloons');
+        const scoreDisplay=document.getElementById('score');
+        const timerDisplay=document.getElementById('timer');
+        const poppedDisplay=document.getElementById('popped');
+        const gameOverEl=document.getElementById('gameOver');
+        const startBtn=document.getElementById('startBtn');
+        const resetBtn=document.getElementById('resetBtn');
 
-        sendBtn.onclick=()=>{
-            const text=messageInput.value.trim();
-            if(text!==''){
-                const msg=document.createElement('div');
-                msg.classList.add('message','sent');
-                msg.textContent=text;
-                chatContainer.appendChild(msg);
-                messageInput.value='';
-                chatContainer.scrollTop=chatContainer.scrollHeight;
+        let score=0, popped=0, timeLeft=30, gameRunning=false, timerInterval, balloonSpawner;
+        const colors=['red','blue','yellow','green','pink','purple'];
 
-                setTimeout(()=>{
-                    const reply=document.createElement('div');
-                    reply.classList.add('message','received');
-                    reply.textContent="horwww! meo sifuu budi";
-                    chatContainer.appendChild(reply);
-                    chatContainer.scrollTop=chatContainer.scrollHeight;
-                },1000);
-            }
-        };
+        function createBalloon(){
+            if(!gameRunning) return;
+            const balloon=document.createElement('div');
+            balloon.className='balloon '+colors[Math.floor(Math.random()*colors.length)];
+            balloon.innerHTML='<div class="balloon-shape"></div><div class="string"></div>';
+            balloon.style.left=Math.random()*80+'%';
+            balloon.style.bottom='-100px';
+            balloon.onclick=function(e){ e.stopPropagation(); popBalloon(balloon); };
+            balloonsContainer.appendChild(balloon);
+            setTimeout(()=>{ if(balloon.parentNode) balloon.remove(); }, 5000);
+        }
+
+        function popBalloon(balloon){
+            if(!gameRunning) return;
+            score+=10; popped++;
+            scoreDisplay.textContent=score;
+            poppedDisplay.textContent=popped;
+            balloon.remove();
+        }
+
+        function startGame(){
+            score=0; popped=0; timeLeft=30;
+            scoreDisplay.textContent=score;
+            poppedDisplay.textContent=popped;
+            timerDisplay.textContent=timeLeft;
+            gameOverEl.style.display='none';
+            balloonsContainer.innerHTML='';
+            gameRunning=true;
+
+            timerInterval=setInterval(()=>{
+                timeLeft--;
+                timerDisplay.textContent=timeLeft;
+                if(timeLeft<=0) endGame();
+            },1000);
+
+            balloonSpawner=setInterval(createBalloon, 800);
+        }
+
+        function endGame(){
+            gameRunning=false;
+            clearInterval(timerInterval);
+            clearInterval(balloonSpawner);
+            gameOverEl.style.display='block';
+        }
+
+        function resetGame(){
+            gameRunning=false;
+            clearInterval(timerInterval);
+            clearInterval(balloonSpawner);
+            balloonsContainer.innerHTML='';
+            score=0; popped=0; timeLeft=30;
+            scoreDisplay.textContent=score;
+            poppedDisplay.textContent=popped;
+            timerDisplay.textContent=timeLeft;
+            gameOverEl.style.display='none';
+        }
+
+        startBtn.onclick=startGame;
+        resetBtn.onclick=resetGame;
     }
-    else if(app==='game'){ content.innerHTML='<h2>Game App</h2><p>Game coming soon!</p>'; }
-    else if(app==='call'){ content.innerHTML='<h2>Phone App</h2><p>Call interface placeholder</p>'; }
+    else if(app==='call'){ content.innerHTML='<h2>Phone App</h2><p>Call placeholder</p>'; }
     else if(app==='messaging'){ content.innerHTML='<h2>Messaging App</h2><p>Messaging placeholder</p>'; }
     else if(app==='camera'){ content.innerHTML='<h2>Camera App</h2><p>Camera placeholder</p>'; }
 
@@ -328,10 +301,7 @@ function openApp(app){
 }
 
 function closeApp(){
-    const container=document.getElementById('appContainer');
-    const iframe=document.getElementById('galleryFrame');
-    if(iframe){ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music){ music.pause(); music.currentTime=0; } }
-    container.style.display='none';
+    document.getElementById('appContainer').style.display='none';
 }
 </script>
 </body>
