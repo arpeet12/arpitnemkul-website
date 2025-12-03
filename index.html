@@ -303,9 +303,40 @@ function openApp(app){
             }
         };
     }
-    else if(app==='facebook'){
-        content.innerHTML=`<h2>Facebook App</h2><p>Custom FB content here</p>`;
-    }
+   else if(app==='facebook'){
+    content.innerHTML=`
+        <h2 style="text-align:center;">Facebook Feed</h2>
+        <div id="fbContainer" style="overflow-y:auto; max-height:75vh; padding:10px; background:rgba(255,255,255,0.05); border-radius:15px;">
+            <div class="fbPost" style="background:rgba(255,255,255,0.1); padding:10px; border-radius:15px; margin-bottom:20px;">
+                <h3 style="margin:5px 0;">Arpeet Nemkul</h3>
+                <p style="margin:5px 0;">best girl ever meet!</p>
+                <img src="photo1 (7).JPG" style="width:100%; border-radius:12px; margin:10px 0;" />
+                
+                <div style="display:flex; margin-top:10px;">
+                    <input type="text" id="fbInput" placeholder="Write a comment..." style="flex:1; padding:8px; border-radius:12px; border:none; outline:none;" />
+                    <button id="fbSendBtn" style="margin-left:8px; padding:8px 12px; border:none; border-radius:12px; background:#0a84ff; color:white; cursor:pointer;">Post</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const fbContainer = document.getElementById('fbContainer');
+    const fbInput = document.getElementById('fbInput');
+    const fbSendBtn = document.getElementById('fbSendBtn');
+
+    fbSendBtn.onclick = () => {
+        const text = fbInput.value.trim();
+        if(text !== ''){
+            const div = document.createElement('div');
+            div.style.marginBottom='5px';
+            div.innerHTML = `<strong>You:</strong> ${text}`;
+            fbContainer.querySelector('.comments').appendChild(div);
+            fbInput.value='';
+            fbContainer.scrollTop = fbContainer.scrollHeight;
+        }
+    };
+}
+
     else if(app==='call'){ content.innerHTML='<h2>Phone App</h2><p>Call interface placeholder</p>'; }
     else if(app==='messaging'){ content.innerHTML='<h2>Messaging App</h2><p>Messaging placeholder</p>'; }
     else if(app==='camera'){ content.innerHTML='<h2>Camera App</h2><p>Camera placeholder</p>'; }
