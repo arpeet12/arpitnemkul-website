@@ -337,6 +337,57 @@ function closeApp() {
     container.style.display = 'none';
 }
 
+// App Open/Close with Gallery Music
+function openApp(app) {
+    const container = document.getElementById('appContainer');
+    const content = document.getElementById('appContent');
+    content.innerHTML = '';
+
+    if(app === 'gallery') {
+        content.innerHTML = `
+            <h2>Gallery App</h2>
+            <iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;" id="galleryFrame"></iframe>
+        `;
+        // Play music inside iframe after it loads
+        const iframe = document.getElementById('galleryFrame');
+        iframe.onload = () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const music = iframeDoc.getElementById('galleryMusic');
+            if(music) music.play();
+        };
+    } else if(app === 'messages') {
+        content.innerHTML = '<h2>Messages App</h2><p>100 sweet messages placeholder...</p>';
+    } else if(app === 'game') {
+        content.innerHTML = '<h2>Sweet Game App</h2><p>Game coming soon!</p>';
+    } else if(app === 'call') {
+        content.innerHTML = '<h2>Phone Call App</h2><p>Phone call interface placeholder</p>';
+    } else if(app === 'messaging') {
+        content.innerHTML = '<h2>Messaging App</h2><p>Messaging interface placeholder</p>';
+    } else if(app === 'camera') {
+        content.innerHTML = '<h2>Camera App</h2><p>Camera interface placeholder</p>';
+    }
+
+    container.style.display = 'block';
+}
+
+function closeApp() {
+    const container = document.getElementById('appContainer');
+    
+    // Stop gallery music if iframe exists
+    const iframe = document.getElementById('galleryFrame');
+    if(iframe) {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const music = iframeDoc.getElementById('galleryMusic');
+        if(music) {
+            music.pause();
+            music.currentTime = 0;
+        }
+    }
+
+    container.style.display = 'none';
+}
+
+
 </script>
 </body>
 </html>
