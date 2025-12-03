@@ -1,97 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday iPhone Style</title>
 <style>
-    body {
-        margin: 0;
-        font-family: sans-serif;
-        background: #111;
-        color: white;
-        height: 100vh;
-        overflow: hidden;
-    }
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap');
 
-    /* Lock Screen */
-    #lockScreen {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: url('https://i.imgur.com/QqQvF7o.jpeg') center/cover no-repeat;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-    }
+body {
+    margin: 0;
+    font-family: 'SF Pro Display', sans-serif;
+    background: #000;
+    overflow: hidden;
+}
 
-    #slideWrapper {
-        width: 80%;
-        height: 60px;
-        background: rgba(255,255,255,0.2);
-        border-radius: 40px;
-        backdrop-filter: blur(6px);
-        position: relative;
-        overflow: hidden;
-        margin-top: 380px;
-    }
+/* Lock Screen */
+#lockScreen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('wallpaper.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 120px;
+    z-index: 9999;
+}
 
-    #slider {
-        width: 60px;
-        height: 60px;
-        background: white;
-        border-radius: 50%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: black;
-        font-weight: bold;
-        box-shadow: 0 0 10px white;
-        touch-action: none;
-    }
+#time {
+    font-size: 80px;
+    font-weight: 300;
+    color: white;
+    text-shadow: 0 0 12px rgba(0,0,0,0.5);
+    margin-bottom: 5px;
+}
 
-    #slideText {
-        position: absolute;
-        width: 100%;
-        text-align: center;
-        line-height: 60px;
-        color: rgba(255,255,255,0.8);
-        font-size: 20px;
-        pointer-events: none;
-    }
+#date {
+    font-size: 18px;
+    color: white;
+    opacity: 0.8;
+    margin-bottom: 180px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
 
-    /* Main content hidden initially */
-    #mainContent {
-        display: none;
-        padding: 20px;
-        text-align: center;
-    }
+#slideWrapper {
+    width: 85%;
+    height: 60px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 40px;
+    backdrop-filter: blur(6px);
+    position: relative;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: 120px;
+}
+
+#slider {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    box-shadow: 0 0 14px rgba(255,255,255,0.9);
+    touch-action: none;
+}
+
+#slideText {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 60px;
+    color: rgba(255,255,255,0.9);
+    font-size: 20px;
+    pointer-events: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+/* Main Content (Apps) */
+#mainContent {
+    display: none;
+    background: url('wallpaper.jpg') center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+#appGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.appIcon {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.appIcon:hover { transform: scale(1.1); }
+
+/* Dock (Fixed at bottom) */
+#appDock {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    padding: 15px 0;
+   
+    z-index: 50;
+}
+
+#appContainer {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(15px);
+    z-index: 999;
+    color: white;
+    padding: 20px;
+    overflow: auto;
+    animation: fadeInApp 0.5s ease;
+}
+
+@keyframes fadeInApp {
+    from { opacity:0; transform: scale(0.95); }
+    to { opacity:1; transform: scale(1); }
+}
 </style>
 </head>
-
 <body>
 
 <!-- Lock Screen -->
 <div id="lockScreen">
+    <div id="time">12:00</div>
+    <div id="date">Thursday, December 4</div>
+
     <div id="slideWrapper">
         <div id="slideText">Slide to Unlock</div>
         <div id="slider">➤</div>
     </div>
 </div>
 
-<!-- Actual Website Content -->
+<!-- Main Content -->
 <div id="mainContent">
-    <h1>🎉 Happy Birthday My Love ❤️</h1>
-    <p>Swipe to unlock worked! Now we continue designing beautiful parts…</p>
+    <div id="appGrid">
+        <div class="appIcon" onclick="openApp('gallery')">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-apple-photos-icon-svg-download-png-493155.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+            <span style="color:white;font-size:14px;">Gallery</span>
+        </div>
+        <div class="appIcon" onclick="openApp('messages')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IMessage_logo.svg/1200px-IMessage_logo.svg.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+            <span style="color:white;font-size:14px;">Messages</span>
+        </div>
+        <div class="appIcon" onclick="openApp('game')">
+            <img src="https://e7.pngegg.com/pngimages/431/758/png-clipart-game-center-iphone-video-game-computer-icons-games-game-electronics.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+            <span style="color:white;font-size:14px;">Game</span>
+        </div>
+        <div class="appIcon" onclick="openApp('game')">
+            <img src="https://e7.pngegg.com/pngimages/431/758/png-clipart-game-center-iphone-video-game-computer-icons-games-game-electronics.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+            <span style="color:white;font-size:14px;">Game</span>
+        </div>
+    </div>
 </div>
 
+<!-- Fixed Bottom Dock -->
+<div id="appDock">
+    <div class="appIcon" onclick="openApp('call')">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/free-apple-phone-icon-svg-download-png-493154.png?f=webp" style="width:50px;height:50px;border-radius:12px;" />
+        <span style="color:white;font-size:12px;margin-top:5px;">Phone</span>
+    </div>
+    <div class="appIcon" onclick="openApp('messaging')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IMessage_logo.svg/1200px-IMessage_logo.svg.png" style="width:50px;height:50px;border-radius:12px;" />
+        <span style="color:white;font-size:12px;margin-top:5px;">Messages</span>
+    </div>
+    <div class="appIcon" onclick="openApp('camera')">
+        <img src="https://i.pinimg.com/1200x/e2/bc/2b/e2bc2b005d593253f62a4727d3da5d4f.jpg" style="width:50px;height:50px;border-radius:12px;" />
+        <span style="color:white;font-size:12px;margin-top:5px;">Camera</span>
+    </div>
+</div>
+
+<!-- App Overlay Container -->
+<div id="appContainer">
+    <button onclick="closeApp()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.2); border:none; color:white; padding:10px 15px; border-radius:12px; cursor:pointer;">Close</button>
+    <div id="appContent"></div>
+</div>
 
 <script>
+// Slide to Unlock
 const slider = document.getElementById("slider");
 const wrapper = document.getElementById("slideWrapper");
 const lockScreen = document.getElementById("lockScreen");
@@ -104,48 +226,117 @@ let sliderX = 0;
 slider.addEventListener("touchstart", startSlide);
 slider.addEventListener("mousedown", startSlide);
 
+document.addEventListener("touchmove", slideMove);
+document.addEventListener("mousemove", slideMove);
+
+document.addEventListener("touchend", endSlide);
+document.addEventListener("mouseup", endSlide);
+
 function startSlide(e) {
     isDown = true;
     startX = e.touches ? e.touches[0].clientX : e.clientX;
 }
 
-document.addEventListener("touchmove", slideMove);
-document.addEventListener("mousemove", slideMove);
-
 function slideMove(e) {
     if (!isDown) return;
-
     let x = e.touches ? e.touches[0].clientX : e.clientX;
     let move = x - startX;
-
     if (move < 0) move = 0;
-    if (move > wrapper.offsetWidth - slider.offsetWidth) {
-        move = wrapper.offsetWidth - slider.offsetWidth;
-    }
-
-    slider.style.left = move + "px";
+    if (move > wrapper.offsetWidth - slider.offsetWidth) move = wrapper.offsetWidth - slider.offsetWidth;
+    slider.style.left = move + 'px';
     sliderX = move;
 }
 
-document.addEventListener("touchend", endSlide);
-document.addEventListener("mouseup", endSlide);
-
 function endSlide() {
     isDown = false;
-
-    // If slider reached the end (unlock)
     if (sliderX >= wrapper.offsetWidth - slider.offsetWidth - 5) {
-        lockScreen.style.opacity = "0";
+        lockScreen.style.opacity = '0';
         setTimeout(() => {
-            lockScreen.style.display = "none";
-            mainContent.style.display = "block";
+            lockScreen.style.display = 'none';
+            mainContent.style.display = 'flex';
         }, 300);
     } else {
-        // Reset slider back
-        slider.style.left = "0px";
+        slider.style.left = '0px';
     }
 }
-</script>
 
+// App Open/Close
+function openApp(app) {
+    const container = document.getElementById('appContainer');
+    const content = document.getElementById('appContent');
+    content.innerHTML = '';
+
+    if(app === 'gallery') {
+        content.innerHTML = '<h2>Gallery App</h2><iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;"></iframe>';
+    } else if(app === 'messages') {
+        content.innerHTML = '<h2>Messages App</h2><p>100 sweet messages placeholder...</p>';
+    } else if(app === 'game') {
+        content.innerHTML = '<h2>Sweet Game App</h2><p>Game coming soon!</p>';
+    } else if(app === 'call') {
+        content.innerHTML = '<h2>Phone Call App</h2><p>Phone call interface placeholder</p>';
+    } else if(app === 'messaging') {
+        content.innerHTML = '<h2>Messaging App</h2><p>Messaging interface placeholder</p>';
+    } else if(app === 'camera') {
+        content.innerHTML = '<h2>Camera App</h2><p>Camera interface placeholder</p>';
+    }
+
+    container.style.display = 'block';
+}
+
+function closeApp() {
+    const container = document.getElementById('appContainer');
+    container.style.display = 'none';
+}
+// App Open/Close with Gallery Music
+function openApp(app) {
+    const container = document.getElementById('appContainer');
+    const content = document.getElementById('appContent');
+    content.innerHTML = '';
+
+    if(app === 'gallery') {
+        content.innerHTML = `
+            <h2>Gallery App</h2>
+            <iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;" id="galleryFrame"></iframe>
+        `;
+        // Play music inside iframe after it loads
+        const iframe = document.getElementById('galleryFrame');
+        iframe.onload = () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const music = iframeDoc.getElementById('galleryMusic');
+            if(music) music.play();
+        };
+    } else if(app === 'messages') {
+        content.innerHTML = '<h2>Messages App</h2><p>100 sweet messages placeholder...</p>';
+    } else if(app === 'game') {
+        content.innerHTML = '<h2>Sweet Game App</h2><p>Game coming soon!</p>';
+    } else if(app === 'call') {
+        content.innerHTML = '<h2>Phone Call App</h2><p>Phone call interface placeholder</p>';
+    } else if(app === 'messaging') {
+        content.innerHTML = '<h2>Messaging App</h2><p>Messaging interface placeholder</p>';
+    } else if(app === 'camera') {
+        content.innerHTML = '<h2>Camera App</h2><p>Camera interface placeholder</p>';
+    }
+
+    container.style.display = 'block';
+}
+
+function closeApp() {
+    const container = document.getElementById('appContainer');
+    
+    // Stop gallery music if iframe exists
+    const iframe = document.getElementById('galleryFrame');
+    if(iframe) {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const music = iframeDoc.getElementById('galleryMusic');
+        if(music) {
+            music.pause();
+            music.currentTime = 0;
+        }
+    }
+
+    container.style.display = 'none';
+}
+
+</script>
 </body>
 </html>
