@@ -106,12 +106,7 @@ body {
         <div class="appIcon" onclick="openApp('link')">
             <img src="https://em-content.zobj.net/source/apple/271/wrapped-gift_1f381.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
             <span style="color:white;font-size:14px;">Small Gift</span>
-
-      
-
         </div>
-   
-
     </div>
 </div>
 
@@ -130,10 +125,9 @@ body {
         <span style="color:white;font-size:12px;margin-top:5px;">Camera</span>
     </div>
     <div class="appIcon" onclick="openApp('facebook')">
-    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
-    <span style="color:white;font-size:14px;">Facebook</span>
-</div>
-
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+        <span style="color:white;font-size:14px;">Facebook</span>
+    </div>
 </div>
 
 <!-- App Container -->
@@ -143,16 +137,15 @@ body {
 </div>
 
 <script>
-// Elements
+// Lock screen slider
 const slider = document.getElementById("slider");
 const wrapper = document.getElementById("slideWrapper");
 const lockScreen = document.getElementById("lockScreen");
 const mainContent = document.getElementById("mainContent");
 const appDock = document.getElementById("appDock");
 
-let isDown = false, startX, sliderX = 0;
+let isDown=false, startX, sliderX=0;
 
-// Slide to unlock
 slider.addEventListener("touchstart", startSlide);
 slider.addEventListener("mousedown", startSlide);
 document.addEventListener("touchmove", slideMove);
@@ -160,237 +153,159 @@ document.addEventListener("mousemove", slideMove);
 document.addEventListener("touchend", endSlide);
 document.addEventListener("mouseup", endSlide);
 
-function startSlide(e) { isDown=true; startX=e.touches?e.touches[0].clientX:e.clientX; }
-function slideMove(e) { 
-    if(!isDown) return; 
-    let x=e.touches?e.touches[0].clientX:e.clientX; 
-    let move = x-startX; 
-    if(move<0) move=0; 
-    if(move>wrapper.offsetWidth-slider.offsetWidth) move=wrapper.offsetWidth-slider.offsetWidth;
-    slider.style.left = move+'px'; sliderX=move; 
-}
-function endSlide() {
-    isDown=false;
-    if(sliderX >= wrapper.offsetWidth - slider.offsetWidth -5){
-        lockScreen.style.opacity='0';
-        setTimeout(()=>{
-            lockScreen.style.display='none';
-            mainContent.style.display='flex';
-            appDock.style.display='flex';
-        },300);
-    }else slider.style.left='0px';
-}
+function startSlide(e){isDown=true; startX=e.touches?e.touches[0].clientX:e.clientX;}
+function slideMove(e){if(!isDown) return; let x=e.touches?e.touches[0].clientX:e.clientX; let move=x-startX; if(move<0) move=0; if(move>wrapper.offsetWidth-slider.offsetWidth) move=wrapper.offsetWidth-slider.offsetWidth; slider.style.left=move+'px'; sliderX=move;}
+function endSlide(){isDown=false; if(sliderX>=wrapper.offsetWidth-slider.offsetWidth-5){ lockScreen.style.opacity='0'; setTimeout(()=>{lockScreen.style.display='none'; mainContent.style.display='flex'; appDock.style.display='flex';},300);}else slider.style.left='0px';}
 
-// Open & Close Apps
+// Open apps
 function openApp(app){
     const container=document.getElementById('appContainer');
     const content=document.getElementById('appContent');
     content.innerHTML='';
 
-    if(app==='gallery'){
+    if(app==='link'){
+        window.location.href="https://www.canva.com/design/DAG6eInDEBM/fwws1axd3v_XoM99jJ5cmg/watch?utm_content=DAG6eInDEBM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7194e40100";
+        return;
+    }
+    else if(app==='gallery'){
         content.innerHTML=`<h2>Gallery App</h2><iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;" id="galleryFrame"></iframe>`;
-        const iframe=document.getElementById('galleryFrame');
-        iframe.onload=()=>{ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music) music.play(); };
     }
     else if(app==='messages'){
         content.innerHTML=`
             <h2 style="text-align:center;">Messages</h2>
-            <div id="chatContainer">
-               <div id="chatContainer">
-  <div class="message received">Happy birthday budi 🎂</div>
-  <div class="message sent">i am fine , and how about you ,small digital wish from mero taraf</div>
-  <div class="message received">remembered the day last time i used to wish like this </div>
-  <div class="message sent">mero sweet budi reply ne deu na </div>
-  <div class="message received">i just wanted to say </div>
-  <div class="message sent">mero budi kasto funny caring ani lovelable character xa  😂</div>
-  <div class="message received">I miss you budi lot more </div>
-  <div class="message sent">I literally coded whole creativity to wish you</div>
-  <div class="message received">happy birthday!</div>
-  <div class="message sent">kassamm seeyy mere pyarr ke liye sab khuch❤️</div>
-  <div class="message received">arko juni ma ne khojdai aauxu </div>
-  <div class="message sent">after everything you did for me 😄</div>
-  <div class="message received">you changed me  ❤️</div>
-  <div class="message sent">only malai baba materail banauna matraii baki xa  🥰</div>
-  <div class="message received">Can't wait to see you</div>
-  <div class="message sent">voli bihena buelai vetxu kiss khanxu</div>
-  <div class="message received">your smile is brighter than my future</div>
-  <div class="message sent">ajha birthday ko din malai chocolate kindineeyy tyaaa 😊</div>
-  <div class="message received">tmi katii caring xau </div>
-  <div class="message sent">Always, for you 💙</div>
-  <div class="message received">if you are reading this then it means i sucessfully deployed my code .</div>
-  <div class="message sent">you are my love of my life😘</div>
-  <div class="message received">i love chatting with you 😄</div>
-  <div class="message sent">oohh budi tmro lagi ma 100 message lekhdai xu❤️</div>
-  <div class="message received">hehe k lekham k lekham vayo</div>
-  <div class="message sent">edi moon ramro vako vaye tmi super ramroo 🥰</div>
-  <div class="message received">jhaile ko jastai tmi one year younger hunxau hehe💙</div>
-  <div class="message sent">both same age vayexi hehe kk garne hola 😄</div>
-  <div class="message received">yo year ma budi ra ma kk garnu parxa hai ta😳</div>
-  <div class="message sent">tya aru sanga maskine haina hai ma jelous hunxu 😏</div>
-  <div class="message received">ma ne dheraii possive xu ne 😄</div>
-  <div class="message sent">aba estaii kta choose garyou hai hehe ❤️</div>
-  <div class="message received">malai ta tmi kyaa manparxa bulushh 🥰</div>
-  <div class="message sent">Miss you!</div>
-  <div class="message received">Miss you more 😘</div>
-  <div class="message sent">kaile vetne kaile vetne vako xaina?</div>
-  <div class="message received">yo year eso eso nagarne😄</div>
-  <div class="message sent">ma ta kyaa hai hai control garna sakidna kya ❤️</div>
-  <div class="message received">you are my life jasma sweet guliooo add gareko jasto.</div>
-  <div class="message sent">tmi aayexi mero life change vako ho by the way😄</div>
-  <div class="message received">i always keep thinking no matter how you think about me </div>
-  <div class="message sent">no matter what happens you birthday gif will keep loving everytime 🥰</div>
-  <div class="message received">You’re my sunchine 🌞</div>
-  <div class="message sent">And you’re my rainbow 🌈</div>
-  <div class="message received">Feeling vagyaamaniii to have you.</div>
-  <div class="message sent">I feel so much proud in your success💙</div>
-  <div class="message received">tya malai game khelyo vanera gali nagarne maya garera food laydine</div>
-  <div class="message sent">Thanks for everything you gave me love care gifts etc hehe unlimited puppy ❤️</div>
-  <div class="message received">malai hai tmi kyaaa manparxa kya</div>
-  <div class="message sent">edi earth blast hunxa vanyo vane ma tmi sanga ek din vayene life bitauxu happy happy 😄</div>
-  <div class="message received">lets do everything sangaii</div>
-  <div class="message sent">sangai khane 🥰</div>
-  <div class="message received">sangaii happy hune</div>
-  <div class="message sent">sangaii dhani hune 💙</div>
-  <div class="message received">sasngaii travel garne</div>
-  <div class="message sent">sangaii khushi😄</div>
-  <div class="message received">sangaii dukhii!</div>
-  <div class="message sent">meo bue i love u soooooooooooo much😘</div>
-  <div class="message received">happy birthday budi ❤️</div>
-  <div class="message sent">happy birthday merooo lovely wifeeeyy 🥰</div>
-  <div class="message received">i have each and every memories with you</div>
-  <div class="message sent">padhna jhyou lagyo hola hai😄</div>
-  <div class="message received">you no angryy nahhh.</div>
-  <div class="message sent">i want to tell you secret😄</div>
-  <div class="message received">if you want to be happy with me just smile everytime </div>
-  <div class="message sent">just try even if you dont like  💙</div>
-  <div class="message received">thats a secret.</div>
-  <div class="message sent">birthday gift nai ma ho hai 😄</div>
-  <div class="message received">ki aru chaixa ra ? ❤️</div>
-  <div class="message sent">meo budi love u jii 🥰</div>
-  <div class="message received">nindra lagyo hola aba ta i think</div>
-  <div class="message sent">budi suna na tmi malai kati ko maya garxauuu ? 😘</div>
-  <div class="message received">from meeting first time to meeting everyday </div>
-  <div class="message sent">from to ☀️</div>
-  <div class="message received">evening! ❤️</div>
-  <div class="message sent">i know you are more smart than me!</div>
-  <div class="message received">your insticts is wayy too good🥰</div>
-  <div class="message sent">you know my behaviours very well 💙</div>
-  <div class="message received">even i get surprised of it😄</div>
-  <div class="message sent">You’re so cute 😘</div>
-  <div class="message received">bakayaruuuuu 😳</div>
-  <div class="message sent">Can't wait to see you  😏</div>
-  <div class="message received">birthday ma ta mast mooj garne hola hai hehe sifu putting 😄</div>
-  <div class="message sent">You're my favorite food❤️</div>
-  <div class="message received">mine forever🥰</div>
-  <div class="message sent">forever</div>
-  <div class="message received">ever😘</div>
-  <div class="message sent">ever!</div>
-  <div class="message received">and! 😄</div>
-  <div class="message sent">ever ❤️</div>
-  <div class="message received">Love you budi  🥰</div>
-  <div class="message sent">Always thinking of you 😘</div>
-  <div class="message received">Always thinking of you ❤️</div>
-  <div class="message sent">You make me so happy 😊</div>
-  <div class="message received">You make me happier 🥰</div>
-  <div class="message sent">You’re my sunshine 🌞</div>
-  <div class="message received">And you’re my rainbow 🌈</div>
-  <div class="message sent">Feeling lucky ❤️</div>
-  <div class="message received">mero budi meo matraii aru kasai ko haina hai 😄</div>
-</div>
-
-            </div>
+            <div id="chatContainer"></div>
             <div style="display:flex; margin-top:10px;">
                 <input id="messageInput" type="text" placeholder="iMessage" />
                 <button id="sendBtn">Send</button>
             </div>
         `;
+        const chatContainer=document.getElementById('chatContainer');
+        const allMessages = [
+           {type:'received', text:'Happy birthday budi 🎂'},
+  {type:'sent', text:'i am fine , and how about you ,small digital wish from mero taraf'},
+  {type:'received', text:'remembered the day last time i used to wish like this'},
+  {type:'sent', text:'mero sweet budi reply ne deu na'},
+  {type:'received', text:'i just wanted to say'},
+  {type:'sent', text:'mero budi kasto funny caring ani lovelable character xa  😂'},
+  {type:'received', text:'I miss you budi lot more'},
+  {type:'sent', text:'I literally coded whole creativity to wish you'},
+  {type:'received', text:'happy birthday!'},
+  {type:'sent', text:'kassamm seeyy mere pyarr ke liye sab khuch❤️'},
+  {type:'received', text:'arko juni ma ne khojdai aauxu'},
+  {type:'sent', text:'after everything you did for me 😄'},
+  {type:'received', text:'you changed me  ❤️'},
+  {type:'sent', text:'only malai baba materail banauna matraii baki xa  🥰'},
+  {type:'received', text:'Can\'t wait to see you'},
+  {type:'sent', text:'voli bihena buelai vetxu kiss khanxu'},
+  {type:'received', text:'your smile is brighter than my future'},
+  {type:'sent', text:'ajha birthday ko din malai chocolate kindineeyy tyaaa 😊'},
+  {type:'received', text:'tmi katii caring xau'},
+  {type:'sent', text:'Always, for you 💙'},
+  {type:'received', text:'if you are reading this then it means i sucessfully deployed my code .'},
+  {type:'sent', text:'you are my love of my life😘'},
+  {type:'received', text:'i love chatting with you 😄'},
+  {type:'sent', text:'oohh budi tmro lagi ma 100 message lekhdai xu❤️'},
+  {type:'received', text:'hehe k lekham k lekham vayo'},
+  {type:'sent', text:'edi moon ramro vako vaye tmi super ramroo 🥰'},
+  {type:'received', text:'jhaile ko jastai tmi one year younger hunxau hehe💙'},
+  {type:'sent', text:'both same age vayexi hehe kk garne hola 😄'},
+  {type:'received', text:'yo year ma budi ra ma kk garnu parxa hai ta😳'},
+  {type:'sent', text:'tya aru sanga maskine haina hai ma jelous hunxu 😏'},
+  {type:'received', text:'ma ne dheraii possive xu ne 😄'},
+  {type:'sent', text:'aba estaii kta choose garyou hai hehe ❤️'},
+  {type:'received', text:'malai ta tmi kyaa manparxa bulushh 🥰'},
+  {type:'sent', text:'Miss you!'},
+  {type:'received', text:'Miss you more 😘'},
+  {type:'sent', text:'kaile vetne kaile vetne vako xaina?'},
+  {type:'received', text:'yo year eso eso nagarne😄'},
+  {type:'sent', text:'ma ta kyaa hai hai control garna sakidna kya ❤️'},
+  {type:'received', text:'you are my life jasma sweet guliooo add gareko jasto.'},
+  {type:'sent', text:'tmi aayexi mero life change vako ho by the way😄'},
+  {type:'received', text:'i always keep thinking no matter how you think about me'},
+  {type:'sent', text:'no matter what happens you birthday gif will keep loving everytime 🥰'},
+  {type:'received', text:'You’re my sunchine 🌞'},
+  {type:'sent', text:'And you’re my rainbow 🌈'},
+  {type:'received', text:'Feeling vagyaamaniii to have you.'},
+  {type:'sent', text:'I feel so much proud in your success💙'},
+  {type:'received', text:'tya malai game khelyo vanera gali nagarne maya garera food laydine'},
+  {type:'sent', text:'Thanks for everything you gave me love care gifts etc hehe unlimited puppy ❤️'},
+  {type:'received', text:'malai hai tmi kyaaa manparxa kya'},
+  {type:'sent', text:'edi earth blast hunxa vanyo vane ma tmi sanga ek din vayene life bitauxu happy happy 😄'},
+  {type:'received', text:'lets do everything sangaii'},
+  {type:'sent', text:'sangai khane 🥰'},
+  {type:'received', text:'sangaii happy hune'},
+  {type:'sent', text:'sangaii dhani hune 💙'},
+  {type:'received', text:'sasngaii travel garne'},
+  {type:'sent', text:'sangaii khushi😄'},
+  {type:'received', text:'sangaii dukhii!'},
+  {type:'sent', text:'meo bue i love u soooooooooooo much😘'},
+  {type:'received', text:'happy birthday budi ❤️'},
+  {type:'sent', text:'happy birthday merooo lovely wifeeeyy 🥰'},
+  {type:'received', text:'i have each and every memories with you'},
+  {type:'sent', text:'padhna jhyou lagyo hola hai😄'},
+  {type:'received', text:'you no angryy nahhh.'},
+  {type:'sent', text:'i want to tell you secret😄'},
+  {type:'received', text:'if you want to be happy with me just smile everytime'},
+  {type:'sent', text:'just try even if you dont like  💙'},
+  {type:'received', text:'thats a secret.'},
+  {type:'sent', text:'birthday gift nai ma ho hai 😄'},
+  {type:'received', text:'ki aru chaixa ra ? ❤️'},
+  {type:'sent', text:'meo budi love u jii 🥰'},
+  {type:'received', text:'nindra lagyo hola aba ta i think'},
+  {type:'sent', text:'budi suna na tmi malai kati ko maya garxauuu ? 😘'},
+  {type:'received', text:'from meeting first time to meeting everyday'},
+  {type:'sent', text:'from to ☀️'},
+  {type:'received', text:'evening! ❤️'},
+  {type:'sent', text:'i know you are more smart than me!'},
+  {type:'received', text:'your insticts is wayy too good🥰'},
+  {type:'sent', text:'you know my behaviours very well 💙'},
+  {type:'received', text:'even i get surprised of it😄'},
+  {type:'sent', text:'You’re so cute 😘'},
+  {type:'received', text:'bakayaruuuuu 😳'},
+  {type:'sent', text:'i cant wait to see you😘'},
+  {type:'received', text:'birthday ma ta mast mooj garne hola hai hehe sifu putting 😄'},
+  {type:'sent', text:'You\'re my favorite food❤️'},
+  {type:'received', text:'mine forever🥰'},
+  {type:'sent', text:'forever'},
+  {type:'received', text:'ever😘'},
+  {type:'sent', text:'ever!'},
+  {type:'received', text:'and! 😄'},
+  {type:'sent', text:'ever ❤️'},
+  {type:'received', text:'Love you budi  🥰'},
+  {type:'sent', text:'Always thinking of you 😘'},
+  {type:'received', text:'Always thinking of you ❤️'},
+  {type:'sent', text:'You make me so happy 😊'},
+  {type:'received', text:'You make me happier 🥰'},
+  {type:'sent', text:'You’re my sunshine 🌞'},
+  {type:'received', text:'And you’re my rainbow 🌈'},
+  {type:'sent', text:'Feeling lucky ❤️'},
+  {type:'received', text:'mero budi meo matraii aru kasai ko haina hai 😄'},
+];
+        allMessages.forEach(msg=>{
+            const div=document.createElement('div');
+            div.classList.add('message', msg.type);
+            div.textContent=msg.text;
+            chatContainer.appendChild(div);
+        });
+        chatContainer.scrollTop=chatContainer.scrollHeight;
 
         const sendBtn=document.getElementById('sendBtn');
         const messageInput=document.getElementById('messageInput');
-        const chatContainer=document.getElementById('chatContainer');
-
         sendBtn.onclick=()=>{
             const text=messageInput.value.trim();
             if(text!==''){
-                const msg=document.createElement('div');
-                msg.classList.add('message','sent');
-                msg.textContent=text;
-                chatContainer.appendChild(msg);
+                const div=document.createElement('div');
+                div.classList.add('message','sent');
+                div.textContent=text;
+                chatContainer.appendChild(div);
                 messageInput.value='';
                 chatContainer.scrollTop=chatContainer.scrollHeight;
-
-                setTimeout(()=>{
-                    const reply=document.createElement('div');
-                    reply.classList.add('message','received');
-                    reply.textContent="horwww! meo sifuu budi";
-                    chatContainer.appendChild(reply);
-                    chatContainer.scrollTop=chatContainer.scrollHeight;
-                },1000);
             }
         };
     }
     else if(app==='facebook'){
-    content.innerHTML=`
-    <h2>Facebook App</h2>
-    <div style="max-width:400px; margin:20px auto; background:rgba(255,255,255,0.1); border-radius:12px; padding:10px;">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <img src="https://i.pravatar.cc/40?img=3" style="width:40px; height:40px; border-radius:50%;" />
-            <strong style="color:white;">Beaufiful girl in the world</strong>
-        </div>
-        <div>
-            <img src="/photo1 (24).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
-        </div>
-
-          <div>
-            <img src="photo1 (12).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
-        </div>
-
-          <div>
-            <img src="photo1 (13).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
-        </div>
-
-        <div>
-            <img src="photo1 (7).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
-        </div>
-
-         <div>
-            <img src="photo1 (19).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
-        </div>
-
-        <div>
-            <img src="photo1 (20).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
-        </div>
-        <div id="fbComments" style="display:flex; flex-direction:column; gap:10px; max-height:300px; overflow-y:auto; margin-bottom:10px;">
-            <!-- comments appear here -->
-        </div>
-        <div style="display:flex; gap:10px;">
-            <input id="fbCommentInput" type="text" placeholder="Write a comment..." style="flex:1; padding:8px 10px; border-radius:12px; border:none; outline:none;" />
-            <button id="fbCommentBtn" style="padding:8px 12px; border:none; border-radius:12px; background:#0a84ff; color:white; cursor:pointer;">Post</button>
-        </div>
-    </div>
-    `;
-
-    const fbCommentBtn = document.getElementById('fbCommentBtn');
-    const fbCommentInput = document.getElementById('fbCommentInput');
-    const fbComments = document.getElementById('fbComments');
-
-    fbCommentBtn.onclick = () => {
-        const text = fbCommentInput.value.trim();
-        if(text !== ''){
-            const comment = document.createElement('div');
-            comment.style.background='rgba(255,255,255,0.2)';
-            comment.style.color='white';
-            comment.style.padding='8px 10px';
-            comment.style.borderRadius='12px';
-            comment.textContent = text;
-            fbComments.appendChild(comment);
-            fbCommentInput.value='';
-            fbComments.scrollTop = fbComments.scrollHeight;
-        }
-    };
-}
-
-    else if(app==='game'){ content.innerHTML='<h2>Game App</h2><p>Game coming soon!</p>'; }
+        content.innerHTML=`<h2>Facebook App</h2><p>Custom FB content here</p>`;
+    }
     else if(app==='call'){ content.innerHTML='<h2>Phone App</h2><p>Call interface placeholder</p>'; }
     else if(app==='messaging'){ content.innerHTML='<h2>Messaging App</h2><p>Messaging placeholder</p>'; }
     else if(app==='camera'){ content.innerHTML='<h2>Camera App</h2><p>Camera placeholder</p>'; }
@@ -399,39 +314,8 @@ function openApp(app){
 }
 
 function closeApp(){
-    const container=document.getElementById('appContainer');
-    const iframe=document.getElementById('galleryFrame');
-    if(iframe){ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music){ music.pause(); music.currentTime=0; } }
-    container.style.display='none';
+    document.getElementById('appContainer').style.display='none';
 }
-function openApp(appName) {
-    if (appName === 'link') {
-        window.location.href = "https://www.canva.com/design/DAG6eInDEBM/fwws1axd3v_XoM99jJ5cmg/watch?utm_content=DAG6eInDEBM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7194e40100"; 
-        return;
-    }
-
-    // Your existing apps + modal code stays unchanged below
-    const modal = document.getElementById('appModal');
-    const modalContent = document.getElementById('modalContent');
-
-    const apps = {
-        camera: { title: '📷 Camera', description: 'Take and manage your photos' },
-        photos: { title: '🖼️ Photos', description: 'Browse your photo gallery' },
-        messages: { title: '💬 Messages', description: 'Chat with your loved ones' },
-        game: { title: '🎮 Game', description: 'Play fun birthday games' },
-        facebook: { title: '📘 Facebook', description: 'Your custom FB page' }
-    };
-
-    const app = apps[appName];
-    modalContent.innerHTML = `
-        <h2>${app.title}</h2>
-        <p>${app.description}</p>
-    `;
-    modal.classList.add('active');
-}
-
-
-
 </script>
 </body>
 </html>
