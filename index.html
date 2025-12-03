@@ -10,9 +10,14 @@
 body {
     margin: 0;
     font-family: 'SF Pro Display', sans-serif;
-    background: #000;
+    background: #000; /* fallback color */
     overflow: hidden;
+    background-image: url('wallpaper.jpg');
+    background-size: cover;      /* makes the image cover full screen */
+    background-position: center; /* centers the image */
+    background-repeat: no-repeat;/* prevents tiling */
 }
+
 
 /* Lock Screen */
 #lockScreen {
