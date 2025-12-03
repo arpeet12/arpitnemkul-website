@@ -28,25 +28,11 @@ body {
     z-index: 9999;
 }
 
-#time {
-    font-size: 80px;
-    font-weight: 300;
-    color: white;
-    text-shadow: 0 0 12px rgba(0,0,0,0.5);
-    margin-bottom: 5px;
-}
-
-#date {
-    font-size: 18px;
-    color: white;
-    opacity: 0.8;
-    margin-bottom: 180px;
-    text-shadow: 0 0 6px rgba(0,0,0,0.6);
-}
+#time { font-size: 80px; font-weight: 300; color: white; text-shadow: 0 0 12px rgba(0,0,0,0.5); margin-bottom: 5px; }
+#date { font-size: 18px; color: white; opacity: 0.8; margin-bottom: 180px; text-shadow: 0 0 6px rgba(0,0,0,0.6); }
 
 #slideWrapper {
-    width: 85%;
-    height: 60px;
+    width: 85%; height: 60px;
     background: rgba(255,255,255,0.15);
     border-radius: 40px;
     backdrop-filter: blur(6px);
@@ -57,101 +43,41 @@ body {
 }
 
 #slider {
-    width: 60px;
-    height: 60px;
+    width: 60px; height: 60px;
     background: rgba(255,255,255,0.9);
     border-radius: 50%;
     position: absolute;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    font-size: 25px;
-    font-weight: bold;
+    left: 0; top: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: black; font-size: 25px; font-weight: bold;
     box-shadow: 0 0 14px rgba(255,255,255,0.9);
     touch-action: none;
 }
 
 #slideText {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    line-height: 60px;
-    color: rgba(255,255,255,0.9);
-    font-size: 20px;
-    pointer-events: none;
-    letter-spacing: 1px;
+    position: absolute; width: 100%; text-align: center;
+    line-height: 60px; color: rgba(255,255,255,0.9);
+    font-size: 20px; pointer-events: none; letter-spacing: 1px;
     text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 
-/* Main Content (Apps) */
-#mainContent {
-    display: none; /* hidden initially */
-    background: url('baka.jpg') center/cover no-repeat;
-    min-height: 100vh;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    position: relative;
-}
-
-#appGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 90%;
-    margin-bottom: 20px;
-}
-
-.appIcon {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
+/* Main Content */
+#mainContent { display: none; background: url('baka.jpg') center/cover no-repeat; min-height:100vh; flex-direction: column; align-items: center; padding: 20px 0; position: relative; }
+#appGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 90%; margin-bottom: 20px; }
+.appIcon { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 20px; height: 100px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; transition: transform 0.3s; }
 .appIcon:hover { transform: scale(1.1); }
 
-/* Dock (Fixed at bottom) */
-#appDock {
-    display: none; /* hidden initially */
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-    padding: 15px 0;
-    z-index: 50;
-}
+#appDock { display: none; position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-around; width: 90%; padding: 15px 0; z-index: 50; }
+#appContainer { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); z-index:999; color:white; padding:20px; overflow:auto; animation: fadeInApp 0.5s ease; }
+@keyframes fadeInApp { from {opacity:0; transform:scale(0.95);} to{opacity:1; transform:scale(1);} }
 
-#appContainer {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(15px);
-    z-index: 999;
-    color: white;
-    padding: 20px;
-    overflow: auto;
-    animation: fadeInApp 0.5s ease;
-}
-
-@keyframes fadeInApp {
-    from { opacity:0; transform: scale(0.95); }
-    to { opacity:1; transform: scale(1); }
-}
+/* iOS Message Style */
+#chatContainer { height:70vh; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding:10px; background: rgba(255,255,255,0.05); border-radius: 15px; }
+.message { max-width:70%; padding:10px 15px; border-radius:20px; font-size:14px; line-height:1.4; word-wrap:break-word; }
+.message.received { background: rgba(255,255,255,0.2); align-self:flex-start; }
+.message.sent { background: #0a84ff; color:white; align-self:flex-end; }
+#messageInput { flex:1; padding:10px; border-radius:15px; border:none; outline:none; }
+#sendBtn { margin-left:10px; padding:10px 15px; border:none; border-radius:15px; background:#0a84ff; color:white; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -160,7 +86,6 @@ body {
 <div id="lockScreen">
     <div id="time">12:00</div>
     <div id="date">Thursday, December 4</div>
-
     <div id="slideWrapper">
         <div id="slideText">Slide to Unlock</div>
         <div id="slider">➤</div>
@@ -185,7 +110,7 @@ body {
     </div>
 </div>
 
-<!-- Fixed Bottom Dock -->
+<!-- Bottom Dock -->
 <div id="appDock">
     <div class="appIcon" onclick="openApp('call')">
         <img src="https://cdn.iconscout.com/icon/free/png-256/free-apple-phone-icon-svg-download-png-493154.png?f=webp" style="width:50px;height:50px;border-radius:12px;" />
@@ -201,7 +126,7 @@ body {
     </div>
 </div>
 
-<!-- App Overlay Container -->
+<!-- App Container -->
 <div id="appContainer">
     <button onclick="closeApp()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.2); border:none; color:white; padding:10px 15px; border-radius:12px; cursor:pointer;">Close</button>
     <div id="appContent"></div>
@@ -217,7 +142,7 @@ const appDock = document.getElementById("appDock");
 
 let isDown = false, startX, sliderX = 0;
 
-// Slide to unlock events
+// Slide to unlock
 slider.addEventListener("touchstart", startSlide);
 slider.addEventListener("mousedown", startSlide);
 document.addEventListener("touchmove", slideMove);
@@ -225,72 +150,87 @@ document.addEventListener("mousemove", slideMove);
 document.addEventListener("touchend", endSlide);
 document.addEventListener("mouseup", endSlide);
 
-function startSlide(e) {
-    isDown = true;
-    startX = e.touches ? e.touches[0].clientX : e.clientX;
+function startSlide(e) { isDown=true; startX=e.touches?e.touches[0].clientX:e.clientX; }
+function slideMove(e) { 
+    if(!isDown) return; 
+    let x=e.touches?e.touches[0].clientX:e.clientX; 
+    let move = x-startX; 
+    if(move<0) move=0; 
+    if(move>wrapper.offsetWidth-slider.offsetWidth) move=wrapper.offsetWidth-slider.offsetWidth;
+    slider.style.left = move+'px'; sliderX=move; 
 }
-
-function slideMove(e) {
-    if (!isDown) return;
-    let x = e.touches ? e.touches[0].clientX : e.clientX;
-    let move = x - startX;
-    if (move < 0) move = 0;
-    if (move > wrapper.offsetWidth - slider.offsetWidth) move = wrapper.offsetWidth - slider.offsetWidth;
-    slider.style.left = move + 'px';
-    sliderX = move;
-}
-
 function endSlide() {
-    isDown = false;
-    if (sliderX >= wrapper.offsetWidth - slider.offsetWidth - 5) {
-        lockScreen.style.opacity = '0';
-        setTimeout(() => {
-            lockScreen.style.display = 'none';
-            mainContent.style.display = 'flex';
-            appDock.style.display = 'flex';
-        }, 300);
-    } else {
-        slider.style.left = '0px';
-    }
+    isDown=false;
+    if(sliderX >= wrapper.offsetWidth - slider.offsetWidth -5){
+        lockScreen.style.opacity='0';
+        setTimeout(()=>{
+            lockScreen.style.display='none';
+            mainContent.style.display='flex';
+            appDock.style.display='flex';
+        },300);
+    }else slider.style.left='0px';
 }
 
-// Open and Close Apps
-function openApp(app) {
-    const container = document.getElementById('appContainer');
-    const content = document.getElementById('appContent');
-    content.innerHTML = '';
+// Open & Close Apps
+function openApp(app){
+    const container=document.getElementById('appContainer');
+    const content=document.getElementById('appContent');
+    content.innerHTML='';
 
-    if(app === 'gallery') {
-        content.innerHTML = `<h2>Gallery App</h2>
-            <iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;" id="galleryFrame"></iframe>`;
-        const iframe = document.getElementById('galleryFrame');
-        iframe.onload = () => {
-            const music = iframe.contentDocument.getElementById('galleryMusic');
-            if(music) music.play();
+    if(app==='gallery'){
+        content.innerHTML=`<h2>Gallery App</h2><iframe src="gallery.html" style="width:100%; height:80vh; border:none; border-radius:15px;" id="galleryFrame"></iframe>`;
+        const iframe=document.getElementById('galleryFrame');
+        iframe.onload=()=>{ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music) music.play(); };
+    }
+    else if(app==='messages'){
+        content.innerHTML=`
+            <h2 style="text-align:center;">Messages</h2>
+            <div id="chatContainer">
+                <div class="message received">Hey! How are you?</div>
+            </div>
+            <div style="display:flex; margin-top:10px;">
+                <input id="messageInput" type="text" placeholder="iMessage" />
+                <button id="sendBtn">Send</button>
+            </div>
+        `;
+
+        const sendBtn=document.getElementById('sendBtn');
+        const messageInput=document.getElementById('messageInput');
+        const chatContainer=document.getElementById('chatContainer');
+
+        sendBtn.onclick=()=>{
+            const text=messageInput.value.trim();
+            if(text!==''){
+                const msg=document.createElement('div');
+                msg.classList.add('message','sent');
+                msg.textContent=text;
+                chatContainer.appendChild(msg);
+                messageInput.value='';
+                chatContainer.scrollTop=chatContainer.scrollHeight;
+
+                setTimeout(()=>{
+                    const reply=document.createElement('div');
+                    reply.classList.add('message','received');
+                    reply.textContent="That's great!";
+                    chatContainer.appendChild(reply);
+                    chatContainer.scrollTop=chatContainer.scrollHeight;
+                },1000);
+            }
         };
-    } else if(app === 'messages') {
-        content.innerHTML = '<h2>Messages App</h2><p>Messages placeholder...</p>';
-    } else if(app === 'game') {
-        content.innerHTML = '<h2>Game App</h2><p>Game coming soon!</p>';
-    } else if(app === 'call') {
-        content.innerHTML = '<h2>Phone App</h2><p>Call interface placeholder</p>';
-    } else if(app === 'messaging') {
-        content.innerHTML = '<h2>Messaging App</h2><p>Messaging placeholder</p>';
-    } else if(app === 'camera') {
-        content.innerHTML = '<h2>Camera App</h2><p>Camera placeholder</p>';
     }
+    else if(app==='game'){ content.innerHTML='<h2>Game App</h2><p>Game coming soon!</p>'; }
+    else if(app==='call'){ content.innerHTML='<h2>Phone App</h2><p>Call interface placeholder</p>'; }
+    else if(app==='messaging'){ content.innerHTML='<h2>Messaging App</h2><p>Messaging placeholder</p>'; }
+    else if(app==='camera'){ content.innerHTML='<h2>Camera App</h2><p>Camera placeholder</p>'; }
 
-    container.style.display = 'block';
+    container.style.display='block';
 }
 
-function closeApp() {
-    const container = document.getElementById('appContainer');
-    const iframe = document.getElementById('galleryFrame');
-    if(iframe) {
-        const music = iframe.contentDocument.getElementById('galleryMusic');
-        if(music) { music.pause(); music.currentTime = 0; }
-    }
-    container.style.display = 'none';
+function closeApp(){
+    const container=document.getElementById('appContainer');
+    const iframe=document.getElementById('galleryFrame');
+    if(iframe){ const music=iframe.contentDocument.getElementById('galleryMusic'); if(music){ music.pause(); music.currentTime=0; } }
+    container.style.display='none';
 }
 </script>
 </body>
