@@ -124,6 +124,11 @@ body {
         <img src="https://i.pinimg.com/1200x/e2/bc/2b/e2bc2b005d593253f62a4727d3da5d4f.jpg" style="width:50px;height:50px;border-radius:12px;" />
         <span style="color:white;font-size:12px;margin-top:5px;">Camera</span>
     </div>
+    <div class="appIcon" onclick="openApp('facebook')">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
+    <span style="color:white;font-size:14px;">Facebook</span>
+</div>
+
 </div>
 
 <!-- App Container -->
@@ -319,6 +324,63 @@ function openApp(app){
             }
         };
     }
+    else if(app==='facebook'){
+    content.innerHTML=`
+    <h2>Facebook App</h2>
+    <div style="max-width:400px; margin:20px auto; background:rgba(255,255,255,0.1); border-radius:12px; padding:10px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <img src="https://i.pravatar.cc/40?img=3" style="width:40px; height:40px; border-radius:50%;" />
+            <strong style="color:white;">Beaufiful girl in the world</strong>
+        </div>
+        <div>
+            <img src="photo1 (24).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
+        </div>
+
+          <div>
+            <img src="photo1 (12).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
+        </div>
+
+          <div>
+            <img src="photo1 (13).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
+        </div>
+
+        <div>
+            <img src="photo1 (7).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
+        </div>
+
+         <div>
+            <img src="photo1 (19).JPG" style="width:100%; border-radius:12px; margin-bottom:10px;" />
+        </div>
+        <div id="fbComments" style="display:flex; flex-direction:column; gap:10px; max-height:300px; overflow-y:auto; margin-bottom:10px;">
+            <!-- comments appear here -->
+        </div>
+        <div style="display:flex; gap:10px;">
+            <input id="fbCommentInput" type="text" placeholder="Write a comment..." style="flex:1; padding:8px 10px; border-radius:12px; border:none; outline:none;" />
+            <button id="fbCommentBtn" style="padding:8px 12px; border:none; border-radius:12px; background:#0a84ff; color:white; cursor:pointer;">Post</button>
+        </div>
+    </div>
+    `;
+
+    const fbCommentBtn = document.getElementById('fbCommentBtn');
+    const fbCommentInput = document.getElementById('fbCommentInput');
+    const fbComments = document.getElementById('fbComments');
+
+    fbCommentBtn.onclick = () => {
+        const text = fbCommentInput.value.trim();
+        if(text !== ''){
+            const comment = document.createElement('div');
+            comment.style.background='rgba(255,255,255,0.2)';
+            comment.style.color='white';
+            comment.style.padding='8px 10px';
+            comment.style.borderRadius='12px';
+            comment.textContent = text;
+            fbComments.appendChild(comment);
+            fbCommentInput.value='';
+            fbComments.scrollTop = fbComments.scrollHeight;
+        }
+    };
+}
+
     else if(app==='game'){ content.innerHTML='<h2>Game App</h2><p>Game coming soon!</p>'; }
     else if(app==='call'){ content.innerHTML='<h2>Phone App</h2><p>Call interface placeholder</p>'; }
     else if(app==='messaging'){ content.innerHTML='<h2>Messaging App</h2><p>Messaging placeholder</p>'; }
