@@ -1,86 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Birthday iPhone Style</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JCREA — Product Designer</title>
 <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-<!-- Lock Screen -->
-<div id="lockScreen">
-    <div id="time">12:00</div>
-    <div id="date">Thursday, December 4</div>
-    <div id="slideWrapper">
-        <div id="slideText">Slide to Unlock</div>
-        <div id="slider">➤</div>
+<header class="nav">
+  <div class="nav-inner container">
+    <a href="#" class="brand"><span class="brand-badge">JC</span>REA</a>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false"></button>
+    <nav class="menu">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Resume</a></li>
+        <li><a href="#">Project</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  </header>
+<main class="hero container">
+  <div class="hero-left">
+    <div class="chip">Hello!</div>
+    <h1>I'm <span class="accent">Jenny</span>,<br>Product Designer</h1>
+    <p class="quote">Jenny’s Exceptional product design ensure our website’s success. Highly Recommended</p>
+    <div class="cta">
+      <a href="#" class="btn glass primary">Portfolio</a>
+      <a href="#" class="btn glass">Hire me</a>
     </div>
-</div>
-
-<!-- Main Content -->
-<div id="mainContent">
-    <div id="appGrid">
-        <div class="appIcon" onclick="openApp('gallery')">
-            <img src="https://cdn.iconscout.com/icon/free/png-256/free-apple-photos-icon-svg-download-png-493155.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
-            <span style="color:white;font-size:14px;">Gallery</span>
-        </div>
-        <div class="appIcon" onclick="openApp('messages')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IMessage_logo.svg/1200px-IMessage_logo.svg.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
-            <span style="color:white;font-size:14px;">Messages</span>
-        </div>
-        <div class="appIcon" onclick="openApp('link')">
-            <img src="https://em-content.zobj.net/source/apple/271/wrapped-gift_1f381.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
-            <span style="color:white;font-size:14px;">Small Gift</span>
-        </div>
-    </div>
-    <!-- Music Widget -->
-<div id="musicWidget">
-    <audio id="bgMusic" src="/Happy Birthday (Piano Version).mp3" loop></audio>
-    <button id="playBtn" class="musicBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
-    </button>
-    <button id="pauseBtn" class="musicBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M6 2h4v20h-4v-20zm8 0h4v20h-4v-20z"/></svg>
-    </button>
-    <span class="musicTitle"> Music 4u</span>
-</div>
-
-</div>
-
-
-
-
-
-<!-- Bottom Dock -->
-<div id="appDock">
-    <div class="appIcon" onclick="openApp('call')">
-        <img src="https://cdn.iconscout.com/icon/free/png-256/free-apple-phone-icon-svg-download-png-493154.png?f=webp" style="width:50px;height:50px;border-radius:12px;" />
-        <span style="color:white;font-size:12px;margin-top:5px;">Phone</span>
-    </div>
-    <div class="appIcon" onclick="openApp('messaging')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IMessage_logo.svg/1200px-IMessage_logo.svg.png" style="width:50px;height:50px;border-radius:12px;" />
-        <span style="color:white;font-size:12px;margin-top:5px;">Messages</span>
-    </div>
-    <div class="appIcon" onclick="openApp('camera')">
-        <img src="https://i.pinimg.com/1200x/e2/bc/2b/e2bc2b005d593253f62a4727d3da5d4f.jpg" style="width:50px;height:50px;border-radius:12px;" />
-        <span style="color:white;font-size:12px;margin-top:5px;">Camera</span>
-    </div>
-    <div class="appIcon" onclick="openApp('facebook')">
-        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" style="width:50px;height:50px;margin-bottom:5px;border-radius:12px;" />
-        <span style="color:white;font-size:14px;">Facebook</span>
-    </div>
-</div>
-
-
-
-
-<!-- App Container -->
-<div id="appContainer">
-    <button onclick="closeApp()" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.2); border:none; color:white; padding:10px 15px; border-radius:12px; cursor:pointer;">Close</button>
-    <div id="appContent"></div>
-</div>
-
+  </div>
+  <div class="hero-photo">
+    <img src="assets/placeholder.svg" alt="Profile photo placeholder">
+    <div class="oval"></div>
+  </div>
+  <div class="stats">
+    <div class="stars">★★★★★</div>
+    <div class="years"><span class="years-number">10 Years</span><span class="years-label">Experience</span></div>
+  </div>
+</main>
 <script src="script.js"></script>
 </body>
 </html>
