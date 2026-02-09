@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Birthday Balloon Pop Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            max-height: 700px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: clamp(24px, 6vw, 32px);
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            flex: 1;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: clamp(20px, 5vw, 28px);
+            display: block;
+        }
+
+        .game-area {
+            flex: 1;
+            background: linear-gradient(135deg, #ffd89b 0%, #ffe6cc 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-area.playing {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .balloons {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .balloon {
+            position: absolute;
+            cursor: pointer;
+            user-select: none;
+            animation: float linear infinite;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+            transition: transform 0.1s ease;
+        }
+
+        .balloon:active {
+            transform: scale(0.95);
+        }
+
+        .balloon-shape {
+            width: 50px;
+            height: 65px;
+            border-radius: 50% 50% 50% 0;
+            position: relative;
+            transform: rotate(-45deg);
+        }
+
+        .string {
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: #333;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+            }
+            100% {
+                transform: translateY(-500px) rotate(-45deg);
+            }
+        }
+
+        .balloon.red .balloon-shape {
+            background: #ff6b6b;
+        }
+
+        .balloon.blue .balloon-shape {
+            background: #4ecdc4;
+        }
+
+        .balloon.yellow .balloon-shape {
+            background: #ffe66d;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+        }
+
+        .balloon.green .balloon-shape {
+            background: #95e1d3;
+        }
+
+        .balloon.pink .balloon-shape {
+            background: #ff8fab;
+        }
+
+        .balloon.purple .balloon-shape {
+            background: #c7a9ff;
+        }
+
+        .pop-effect {
+            position: absolute;
+            font-size: 30px;
+            animation: popAnimation 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes popAnimation {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-50px);
+            }
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: clamp(14px, 4vw, 18px);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-start:active {
+            transform: translateY(0);
+        }
+
+        .btn-reset {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-reset:active {
+            transform: translateY(0);
+        }
+
+        .btn-start:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .game-over.show {
+            display: block;
+        }
+
+        .game-over h2 {
+            color: #764ba2;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .game-over p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .game-over .final-score {
+            font-size: 36px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        @media (max-height: 600px) {
+            .game-container {
+                max-height: 100vh;
+                height: 100vh;
+            }
+        }
+
+        @media (orientation: landscape) {
+            .game-container {
+                max-height: 95vh;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+            
+            .stat-box {
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🎈 Balloon Pop 🎉</h1>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <span class="stat-label">Score</span>
+                <span class="stat-value" id="score">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Time</span>
+                <span class="stat-value" id="timer">30</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Popped</span>
+                <span class="stat-value" id="popped">0</span>
+            </div>
+        </div>
+
+        <div class="game-area" id="gameArea">
+            <div class="message" id="message">Ready to pop balloons?</div>
+            <div class="balloons" id="balloons"></div>
+            <div class="game-over" id="gameOver">
+                <h2>🎂 Game Over! 🎂</h2>
+                <p>Happy Birthday! 🎉</p>
+                <div class="final-score" id="finalScore">0</div>
+                <p>Balloons Popped!</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-start" id="startBtn" onclick="startGame()">Start Game</button>
+            <button class="btn-reset" onclick="resetGame()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        const gameArea = document.getElementById('gameArea');
+        const balloonsContainer = document.getElementById('balloons');
+        const scoreDisplay = document.getElementById('score');
+        const timerDisplay = document.getElementById('timer');
+        const poppedDisplay = document.getElementById('popped');
+        const startBtn = document.getElementById('startBtn');
+        const messageEl = document.getElementById('message');
+        const gameOverEl = document.getElementById('gameOver');
+        const finalScoreEl = document.getElementById('finalScore');
+
+        let score = 0;
+        let popped = 0;
+        let timeLeft = 30;
+        let gameRunning = false;
+        let timerInterval = null;
+        let balloonSpawner = null;
+
+        const colors = ['red', 'blue', 'yellow', 'green', 'pink', 'purple'];
+
+        function createBalloon() {
+            if (!gameRunning) return;
+
+            const balloon = document.createElement('div');
+            balloon.className = `balloon ${colors[Math.floor(Math.random() * colors.length)]}`;
+            
+            const duration = Math.random() * 3 + 3;
+            const xPos = Math.random() * 80 + 10;
+            
+            balloon.innerHTML = `
+                <div class="balloon-shape"></div>
+                <div class="string"></div>
+            `;
+            
+            balloon.style.left = xPos + '%';
+            balloon.style.bottom = '-100px';
+            balloon.style.animation = `float linear ${duration}s infinite`;
+            
+            balloon.onclick = (e) => {
+                e.stopPropagation();
+                popBalloon(balloon);
+            };
+
+            balloonsContainer.appendChild(balloon);
+
+            setTimeout(() => {
+                if (balloon.parentNode) {
+                    balloon.remove();
+                }
+            }, duration * 1000 + 1000);
+        }
+
+        function popBalloon(balloon) {
+            if (!gameRunning) return;
+
+            score += 10;
+            popped++;
+            scoreDisplay.textContent = score;
+            poppedDisplay.textContent = popped;
+
+            const rect = balloon.getBoundingClientRect();
+            const containerRect = gameArea.getBoundingClientRect();
+            
+            const popEffect = document.createElement('div');
+            popEffect.className = 'pop-effect';
+            popEffect.textContent = '💥';
+            popEffect.style.left = (rect.left - containerRect.left) + 'px';
+            popEffect.style.top = (rect.top - containerRect.top) + 'px';
+
+            gameArea.appendChild(popEffect);
+
+            setTimeout(() => popEffect.remove(), 600);
+
+            balloon.remove();
+            playPopSound();
+        }
+
+        function playPopSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            osc.frequency.setValueAtTime(800, audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.1);
+            
+            gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + 0.1);
+        }
+
+        function startGame() {
+            if (gameRunning) return;
+
+            gameRunning = true;
+            score = 0;
+            popped = 0;
+            timeLeft = 30;
+            balloonsContainer.innerHTML = '';
+            gameOverEl.classList.remove('show');
+            messageEl.style.display = 'none';
+            gameArea.classList.add('playing');
+            startBtn.disabled = true;
+            startBtn.textContent = 'Game Running...';
+
+            scoreDisplay.textContent = '0';
+            poppedDisplay.textContent = '0';
+            timerDisplay.textContent = '30';
+
+            balloonSpawner = setInterval(() => {
+                createBalloon();
+            }, 500);
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            gameRunning = false;
+            clearInterval(balloonSpawner);
+            clearInterval(timerInterval);
+            
+            gameArea.classList.remove('playing');
+            balloonsContainer.innerHTML = '';
+            messageEl.style.display = 'block';
+            messageEl.textContent = 'Game Over!';
+            
+            finalScoreEl.textContent = popped;
+            gameOverEl.classList.add('show');
+            
+            startBtn.disabled = false;
+            startBtn.textContent = 'Play Again';
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            clearInterval(balloonSpawner);
+            clearInterval(timerInterval);
+            
+            score = 0;
+            popped = 0;
+            timeLeft = 30;
+            
+            balloonsContainer.innerHTML = '';
+            gameOverEl.classList.remove('show');
+            messageEl.style.display = 'block';
+            messageEl.textContent = 'Ready to pop balloons?';
+            gameArea.classList.remove('playing');
+            
+            scoreDisplay.textContent = '0';
+            poppedDisplay.textContent = '0';
+            timerDisplay.textContent = '30';
+            
+            startBtn.disabled = false;
+            startBtn.textContent = 'Start Game';
+        }
+    </script>
+</body>
+</html>
