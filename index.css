@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap");
+
+body {
+  margin: 0;
+  font-family: "SF Pro Display", sans-serif;
+  overflow: hidden;
+  background: #000;
+}
+#musicWidget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 12px 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  width: fit-content;
+  z-index: 10;
+}
+
+.musicBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.musicBtn svg {
+  display: block;
+}
+
+.musicTitle {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#lockScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("baka.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 120px;
+  z-index: 9999;
+}
+
+#time {
+  font-size: 80px;
+  font-weight: 300;
+  color: white;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 5px;
+}
+#date {
+  font-size: 18px;
+  color: white;
+  opacity: 0.8;
+  margin-bottom: 180px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+#slideWrapper {
+  width: 85%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 40px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+  margin-top: auto;
+  margin-bottom: 120px;
+}
+
+#slider {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+  touch-action: none;
+}
+
+#slideText {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 60px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  pointer-events: none;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+#mainContent {
+  display: none;
+  background: url("baka.jpg") center/cover no-repeat;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  position: relative;
+}
+#appGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 90%;
+  margin-bottom: 20px;
+}
+.appIcon {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.appIcon:hover {
+  transform: scale(1.1);
+}
+
+#appDock {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding: 15px 0;
+  z-index: 50;
+}
+#appContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 999;
+  color: white;
+  padding: 20px;
+  overflow: auto;
+  animation: fadeInApp 0.5s ease;
+}
+@keyframes fadeInApp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#chatContainer {
+  height: 70vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+}
+.message {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+.message.received {
+  background: rgba(255, 255, 255, 0.2);
+  align-self: flex-start;
+}
+.message.sent {
+  background: #0a84ff;
+  color: white;
+  align-self: flex-end;
+}
+#messageInput {
+  flex: 1;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+}
+#sendBtn {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  background: #0a84ff;
+  color: white;
+  cursor: pointer;
+}
