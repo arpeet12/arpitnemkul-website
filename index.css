@@ -99,15 +99,40 @@ nav:hover #nav-bottom{
   margin-top: 3vh;
 }
 
-
 #nav-bottom{
-
-  height: 0%;
-  position: absolute;
+  height:0%;
+  position:absolute;
   width: 79%;
-  transition: all is 0.65s ease;
-  bottom: 0%;
+  transition: all ease 0.65s;
+  bottom:0%;
   border-bottom: 1px solid #dadada;
+  display: flex;
+  align-items:flex-start;
+  justify-content: space-between ;
+
+  padding: 2vw 15vw;
+  padding-left: 18.2vw;
+  padding-top: 3vw;
+
+ 
+}
+
+.bottom-div{
+  /* background-color: red; */
+}
+
+.bottom-div h5{
+  /* background-color:red ; */
+  margin-bottom: 0.4vw;
+}
+.bottom-div h5 span{
+  background-color: red;
+  overflow: hidden;
+ display: inline-block;
+  font-weight: 500;
+  font-size: 0.75vw;
+  margin-top: 3vw;
+    
 }
 
 
