@@ -8,123 +8,38 @@
 html,body{
   height: 100%;
   width: 100%;
-  background-color:#111;
 }
-
-/* ================= NAV ================= */
 
 nav{
   position: fixed;
-  top:0;
-  left:0;
   display: flex;
   align-items: center; 
   width: 100%; 
+  padding: 2vw 4vw; 
   justify-content: space-between;
-  padding: 1.6vw 10.4vw;
-  background:#111;
-  border-bottom:1px solid #222; /* visible line */
-  z-index:999;
+  padding: 2vw 10.4vw;
+  
 }
-
 nav h1{
    font-size: 1.6vw;
-   font-weight:600;
 }
 
-/* menu */
 .nav-part2{
    display: flex;
-   gap: 2vw;
-   align-items: center;
-   position: relative;
-   z-index: 10;
-}
+    gap: 2vw;
+    align-items: flex-start;
+    padding: 1vh 0;
+    position: relative;
+    z-index: 10;
 
+}
 .nav-part2 h4{
   font-size: 0.73vw;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin:0;
-  cursor:pointer;
-  color:#aaa;
-  transition:all .3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2.6vw;
+
 }
-
-.nav-part2 h4:hover{
-  color:#0BA34E;
-}
-
-/* hire button */
-nav button{
-  padding:.6vw 1.4vw;
-  border-radius:2vw;
-  border:none;
-  background:#0BA34E;
-  font-size:.7vw;
-  cursor:pointer;
-}
-
-/* ================= DROPDOWN (FIXED) ================= */
-
-/* IMPORTANT: before you were pushing it downward using bottom:-100% ❌ */
-
-#nav-bottom{
-  position:absolute;
-  left:0;
-  top:100%;
-  width:100%;
-
-  display:flex;
-  justify-content:center;
-  gap:4vw;
-
-  opacity:0;
-  transform:translateY(-20px);
-  transition:all .45s ease;
-  pointer-events:none;
-}
-
-nav.open #nav-bottom{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-#main{
-  transition:transform .45s ease;
-}
-
-nav.open ~ #main{
-  transform:translateY(120px);
-}
-
-/* smooth open */
-nav:hover #nav-bottom{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-.bottom-div h5{
-  margin-bottom:.4vw;
-}
-
-.bottom-div h5 span{
-  overflow:hidden;
-  display:inline-block;
-  font-weight:500;
-  font-size:.75vw;
-  margin-top:.6vw;
-  color:#888;
-  transition:.3s;
-}
-
-.bottom-div h5 span:hover{
-  color:#0BA34E;
-}
-
-/* ================= YOUR PAGE1 (UNCHANGED) ================= */
 
 #page1{
  height: 100vh ;
@@ -134,27 +49,25 @@ nav:hover #nav-bottom{
  flex-direction: column;
  align-items: center;
  justify-content: center;
-
- padding-top: 6vw; /* ← THIS fixes desktop gap */
 }
-
 #page1 h1{
-  font-size:clamp(42px, 8vw, 140px);
-  line-height:0.95;
-  font-weight:900;
-  letter-spacing:-2px;
+font-size: 8.5vw;
+text-transform: uppercase;
+font-weight: 900 ;
+line-height: 8.5vw;
 }
 
 #page1 h1 svg{
   height: 6vw;
   width: 6vw;
   border-radius: 50%;
+
   background-color: #0BA34E;
 }
 
 #page1-something{
  display: flex;
- align-items: center;
+ align-items: center  ;
  justify-content: center;
 }
 
@@ -166,117 +79,65 @@ nav:hover #nav-bottom{
   padding: 5px 12px;
   border: 1px solid rgb(148, 147, 147);
   border-radius: 50px;
+
+}
+nav:hover #nav-bottom{
+  
+  height: 100%;
+  bottom: -100%;
 }
 
 #page1-something h4:nth-child(3){
  border: none;
  padding: 2px;
-}
+} 
+
 
 #page1 p{
   text-align: center;
-  font-weight: 400;
+ font-weight: 400;
   margin-top: 3vh;
 }
 
-/* ================= PAGE2 ================= */
+#nav-bottom{
+  height:0%;
+  position:absolute;
+  width: 79%;
+  transition: all ease 0.65s;
+  bottom:0%;
+  border-bottom: 1px solid #dadada;
+  display: flex;
+  align-items:flex-start;
+  justify-content: space-between ;
+
+  padding: 2vw 15vw;
+  padding-left: 18.2vw;
+  padding-top: 3vw;
+
+ 
+}
+
+.bottom-div{
+  /* background-color: red; */
+}
+
+.bottom-div h5{
+  /* background-color:red ; */
+  margin-bottom: 0.4vw;
+}
+.bottom-div h5 span{
+  background-color: red;
+  overflow: hidden;
+ display: inline-block;
+  font-weight: 500;
+  font-size: 0.75vw;
+  margin-top: 3vw;
+    
+}
+
 
 #page2{
   height: 100vh;
   width: 100%;
   background-color: #111;
-}
-
-/* ================= MOBILE FIX ================= */
-
-.menu-toggle{
-  display:none;
-}
-
-/* responsive navbar */
-@media(max-width:768px){
-
-  nav{
-    padding:18px 6vw;
-  }
-
-  nav h1{
-    font-size:18px;
-  }
-
-  /* show hamburger */
-  .menu-toggle{
-    display:block;
-    font-size:22px;
-    cursor:pointer;
-  }
-
-  /* convert menu into dropdown */
-  .nav-part2{
-    position:absolute;
-    top:100%;
-    left:0;
-    width:100%;
-    background:#111;
-    flex-direction:column;
-    align-items:flex-start;
-    padding:20px 6vw;
-    gap:16px;
-
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .4s ease;
-  }
-
-  .nav-part2.active{
-    max-height:300px;
-  }
-
-  .nav-part2 h4{
-    font-size:14px;
-  }
-
-  nav button{
-    display:none;
-  }
-
-  /* disable hover mega menu on phone */
-
-  @media (max-width:768px){
-  #page1{
-    padding-top:80px; /* fixed navbar height for phones */
-  }
-}
-  #nav-bottom{
-    display:none;
-  }
-}
-
-/* Fix alignment of SVG as a letter */
-.hero-line{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:0.6vw; /* controls spacing */
-}
-
-/* The green circular O */
-.logo-o{
-  width:0.9em;
-  height:0.9em;
-  margin:0 0.15em;
-
-  background:#0BA34E;
-  border-radius:50%;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  transform:translateY(-0.05em);
-}
-
-.logo-o svg{
-  width:55%;
-  height:55%;
 }
