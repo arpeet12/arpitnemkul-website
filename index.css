@@ -10,6 +10,37 @@ html,body{
   width: 100%;
 }
 
+nav{
+  position: fixed;
+  display: flex;
+  align-items: center; 
+  width: 100%; 
+  padding: 2vw 4vw; 
+  justify-content: space-between;
+  padding: 2vw 10.4vw;
+  
+}
+nav h1{
+   font-size: 1.6vw;
+}
+
+.nav-part2{
+   display: flex;
+    gap: 2vw;
+    align-items: flex-start;
+    padding: 1vh 0;
+    position: relative;
+    z-index: 10;
+
+}
+.nav-part2 h4{
+  font-size: 0.73vw;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2.6vw;
+
+}
+
 #page1{
  height: 100vh ;
  width: 100%;
@@ -34,12 +65,50 @@ line-height: 8.5vw;
   background-color: #0BA34E;
 }
 
+#page1-something{
+ display: flex;
+ align-items: center  ;
+ justify-content: center;
+}
+
+#page1-something h4{
+  font-size: 2vw;
+  font-weight: 400;
+  margin-top: 1px;
+  text-transform: lowercase;
+  padding: 5px 12px;
+  border: 1px solid rgb(148, 147, 147);
+  border-radius: 50px;
+
+}
+nav:hover #nav-bottom{
+  
+  height: 100%;
+  bottom: -100%;
+}
+
+#page1-something h4:nth-child(3){
+ border: none;
+ padding: 2px;
+} 
+
+
 #page1 p{
   text-align: center;
  font-weight: 400;
   margin-top: 3vh;
 }
 
+
+#nav-bottom{
+
+  height: 0%;
+  position: absolute;
+  width: 79%;
+  transition: all is 0.65s ease;
+  bottom: 0%;
+  border-bottom: 1px solid #dadada;
+}
 
 
 #page2{
