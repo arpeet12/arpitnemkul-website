@@ -1,15 +1,14 @@
 const toggle = document.querySelector(".menu-toggle");
-const navMenu = document.querySelector(".nav-part2");
-
-toggle.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
-const nav = document.querySelector("nav");
-
-nav.addEventListener("mouseenter", () => {
-  nav.classList.add("open");
-});
-
-nav.addEventListener("mouseleave", () => {
-  nav.classList.remove("open");
-});
+const menu = document.querySelector(".menu");
+if(toggle && menu){
+  toggle.addEventListener("click",()=>{
+    const open = menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  menu.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click",()=>{
+      menu.classList.remove("open");
+      toggle.setAttribute("aria-expanded","false");
+    });
+  });
+}
